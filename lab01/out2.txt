@@ -1,0 +1,24 @@
+PROGRAMMING     11    13,10 UpLeft        
+JAVA            4     11,9  DownLeft      
+WORDS           5     1,7   DownLeft      
+LINES           5     5,10  Up            
+CIVIL           5     9,9   Up            
+TEST            4     11,5  Left          
+STACK           5     10,12 Down          
+
+
+. . . . . . . . . . . . . . . 
+. . . . . . . W . . S . . . . 
+. . . . . . O . . . E . . . . 
+G . . . . R . . . . N . . . . 
+. N . . D . . . . . I . . . . 
+. . I S . . . . . L L . . . . 
+. . . M . . . . . I . . . . . 
+. . . . M . . . . V . . . . . 
+. . . . . A . . . I . . . . . 
+. . . . . . R . . C . . . . . 
+. . . . . . . G . . . . S . . 
+. . T S E T . . O J . . T . . 
+. . . . . . . . A R . . A . . 
+. . . . . . . V . . P . C . . 
+. . . . . . A . . . . . K . . 

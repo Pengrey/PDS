@@ -1,0 +1,28 @@
+APPLE           5     6,8   Down          
+BANANA          6     2,0   Right         
+CHERRY          6     13,5  Left          
+MELON           5     0,9   Left          
+PEAR            4     6,13  Down          
+GRAPES          6     8,6   UpLeft        
+PINEAPPLE       9     12,3  Right         
+STRAWBERRY      10    11,5  Right         
+KIWI            4     4,13  DownLeft      
+ORANGE          6     7,9   Up            
+WATERMELON      10    14,9  Left          
+
+
+. . . . . N O L E M . . . . . 
+. . . . . . . . . . . . . . . 
+B A N A N A . . . E . . . . . 
+. S . . . . . . . G . . . . . 
+. . E . . . . . . N . . . K . 
+. . . P . . . . . A . . I . . 
+. . . . A . . . A R . W . P . 
+. . . . . R . . P O I . . E . 
+. . . . . . G . P . . . . A . 
+. . . . . . . . L . . . . R . 
+. . . . . . . . E . . . . . . 
+. . . . . S T R A W B E R R Y 
+. . . P I N E A P P L E . . . 
+Y R R E H C . . . . . . . . . 
+N O L E M R E T A W . . . . . 
