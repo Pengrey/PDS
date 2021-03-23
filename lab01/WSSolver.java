@@ -11,6 +11,7 @@ import java.util.HashSet;
 public class WSSolver {
     public static void main(String[] args){
         try {
+            //Read file
             File file = new File(args[0]);
             Scanner sc = new Scanner(file);
             ArrayList<ArrayList<String>> puzzle = new ArrayList<ArrayList<String>>();
@@ -33,30 +34,34 @@ public class WSSolver {
               }
             }
             sc.close();
+            //Check if number of lines exceeds 40
             if(puzzle.size() > 40){
               System.out.println("Dimensions exceeds 40: " + puzzle.size());
               throw new puzzleWrongDimensions("Dimensions exceeds 40: " + puzzle.size());
             }
             for (ArrayList<String> list : puzzle) {
-                if(list.size() != puzzle.size()){
+                if(list.size() != puzzle.size()){ // Check if puzzle is a square
                   System.out.println("Bad size: " + list.size());
                     throw new puzzleNotSquaredException("Bad size: " + list.size());
                 }
-                if(list.size() > 40){
+                if(list.size() > 40){ //Check if number of columns exceeds 40
                   System.out.println("Dimensions exceeds 40: " + puzzle.size());
                     throw new puzzleWrongDimensions("Dimensions exceeds 40: " + puzzle.size());
                 }
             }
             ArrayList<word> wordsFound = new ArrayList<word>();
 
+            //Find every word in puzzle
             for(int x = 0; x < puzzle.size(); x++){
               for(int y = 0; y < puzzle.size(); y++){
                 wordsFound = findWord(puzzle, words, wordsFound, x, y);
               }
             }
 
+            //Sort words by length from bigger to smaller
             Collections.sort(wordsFound, new wordComparator());
 
+            //Empty solution
             String[][] solution = new String[puzzle.size()][puzzle.size()];
             for (int i = 0; i < puzzle.size(); i++){
               for (int j = 0; j < puzzle.size(); j++){
@@ -65,6 +70,7 @@ public class WSSolver {
             }
 
             ArrayList<word> toRemove = new ArrayList<word>();
+            //Multi dimensional array used for verifications
             int[][][] vrfy = new int[puzzle.size()][puzzle.size()][wordsFound.size()];
             for(int i = 0; i < wordsFound.size();i++){
               for(int k = 0; k < puzzle.size();k++){
@@ -74,6 +80,7 @@ public class WSSolver {
               }
             }
             int z = 0;
+            //Fill solution and verification array
             for (word w : wordsFound) {
               int x = w.getStarterX();
               int y = w.getStarterY();
@@ -87,11 +94,11 @@ public class WSSolver {
             }
 
             
-            // Vrfy
+            // Verifications
             int ox, oy, len, count;
             for(int w = 0 ; w < wordsFound.size() ; w++){
               for(int l = 0 ; l < wordsFound.size(); l++){
-                if(w == l) continue;  // Caso compare o mesmo layer com ele próprio
+                if(w == l) continue;  // Case of comparing itself
                 ox = wordsFound.get(w).getStarterX();
                 oy = wordsFound.get(w).getStarterY();
                 len = wordsFound.get(w).getLength();
@@ -120,10 +127,12 @@ public class WSSolver {
               }
             }
 
+            //remove all blacklisted words
             for (word word : toRemove) {
               wordsFound.remove(word);
             }
 
+            //Check for duplicated words
             Set<String> testSet = new HashSet<String>();
             for (word word : wordsFound) {
               if(!testSet.add(word.getName())){
@@ -132,6 +141,7 @@ public class WSSolver {
               }
             }
 
+            //Check for non existing words
             for (String word : words){
               if(!testSet.contains(word)){
                 System.out.println("Word " + word + " not in puzzle");
@@ -139,6 +149,7 @@ public class WSSolver {
               }
             }
 
+            //Print words, their coordinates, lengths and directions
             for(int i = 0 ; i < words.size() ; i++) {
               for(int j = 0 ; j < words.size() ; j++) {
                   if(words.get(i).toUpperCase().contentEquals(wordsFound.get(j).getName())) {
@@ -149,6 +160,7 @@ public class WSSolver {
 
             System.out.println("\n");
 
+            //Print puzzle solution
             for (int i = 0; i < puzzle.size(); i++){
               for (int j = 0; j < puzzle.size(); j++){
                 if (j == puzzle.size() - 1){
@@ -159,6 +171,7 @@ public class WSSolver {
               }
             }
 
+            //Save solution to file
             saveData(puzzle, solution, wordsFound, words);
 
           } catch (FileNotFoundException e) {
@@ -178,21 +191,23 @@ public class WSSolver {
       String firstLetter = puzzle.get(x).get(y);
       word w;
       for (String word : words) {
-        if(word.substring(0, 1).equalsIgnoreCase(firstLetter)){
+        if(word.substring(0, 1).equalsIgnoreCase(firstLetter)){ //Check if puzzle leter equals the first letter from word
           int x2, y2, i;
           boolean wordFound;
-          for (direction dir : direction.values()) {
+          for (direction dir : direction.values()) { //Check every direction for the word
             x2 = x;
             y2 = y;
             wordFound = true;
             for(i = 1; i < word.length();i++){
               x2 = x2 + dir.getX();
               y2 = y2 + dir.getY();
+              //If word does not exist in this direction
               if(x2 < 0 || y2 < 0 || x2 > puzzle.size() - 1 || y2 > puzzle.size() - 1 || !(word.substring(i, i + 1).equals(puzzle.get(x2).get(y2)))){
                 wordFound = false;
                 break;
               }
             }
+            //If word exists in this direction
             if(wordFound){
               w = new word(word,word.length(),dir, x,y);
               wordsFound.add(w);
