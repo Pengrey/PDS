@@ -135,8 +135,9 @@ public class WSGenerator {
             }
         }
         // Help message
-        System.out.println("usage: -i file  # gives file with word soup words");
-        System.out.println("       -s size  # gives size for the word soup (max size: 40)");
+        System.out.println("usage: -i file     # gives file with word soup words");
+        System.out.println("       -s size     # gives size for the word soup (max size: 40)");
+        System.out.println("       -o filename # gives name of the file where the soup will be saved");
         System.exit(0);
     }
 
