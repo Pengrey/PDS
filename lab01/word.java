@@ -1,9 +1,14 @@
+//=================Done by=========================
+//          Rodrigo Lima nMec 98475
+//          Gonçalo Machado nMec 98359
+//=================================================
+
 public class word {
     
-    String name;
-    int length;
-    direction dir;
-    int starterX,starterY;
+    private String name;
+    private int length;
+    private direction dir;
+    private int starterX,starterY;
     
     public word(String name, int length, direction dir, int starterX, int starterY) {
         this.name = name;

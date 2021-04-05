@@ -41,7 +41,7 @@ public class WSSolver {
 
 	public static void main(String[] args) throws IOException {
 		
-		//Verificação de argumentos
+		//Verificao de argumentos
 		if (args.length < 1 || args.length > 2) {
 			System.exit(1);
 		}
@@ -61,9 +61,9 @@ public class WSSolver {
 		}
 		
 		String currentLine = file.next();		//Linha a analisar
-		//Verificar a 1ª linha
+		//Verificar a 1 linha
 		if(!currentLine.equals(currentLine.toUpperCase())){
-			System.out.println("Sopa de letras inválida >:(");
+			System.out.println("Sopa de letras invlida >:(");
 			System.exit(1);
 		}
 		
@@ -77,12 +77,12 @@ public class WSSolver {
 		}
 		
 		ArrayList<String> puzzle = new ArrayList<String>();		//Array com todas as linhas do puzzle
-		puzzle.add(currentLine);								//Adicionar 1ª linha
-		int count = 1;											//Contador para ver quantas linhas já foram analizadas
+		puzzle.add(currentLine);								//Adicionar 1 linha
+		int count = 1;											//Contador para ver quantas linhas j foram analizadas
 		
 		while(file.hasNext()){
 			currentLine = file.next();
-			//Se a linha não realiza os critérios para pertencer ao puzzle
+			//Se a linha no realiza os critrios para pertencer ao puzzle
 			if( !(currentLine.equals(currentLine.toUpperCase()) && currentLine.length() == puzzleSize) ){
 				break;
 			}
@@ -92,20 +92,20 @@ public class WSSolver {
 			count++;
 		}
 		
-		//Verificar se o puzzle é quadrado
+		//Verificar se o puzzle  quadrado
 		if (count != puzzleSize) {
-			System.out.println("Sopa de letras não é quadrada >:(");
+			System.out.println("Sopa de letras no  quadrada >:(");
 			System.exit(1);
 		}
 		
 		//Gerar sopa
 		WordSoupe sopa = new WordSoupe(puzzleSize);
 		
-		//Array com todas as soluções
+		//Array com todas as solues
 		while(file.hasNext()){
-			//Validar as soluções
+			//Validar as solues
 			if(currentLine.equals(currentLine.toUpperCase())){
-				System.out.println("Solução Inválida (Letras Maiúsculas) >:(");
+				System.out.println("Soluo Invlida (Letras Maisculas) >:(");
 				System.exit(1);
 			}
 			else {
@@ -114,9 +114,9 @@ public class WSSolver {
 			currentLine = file.next();
 		}
 		
-		//Validar as soluções
+		//Validar as solues
 		if(currentLine.equals(currentLine.toUpperCase())){
-			System.out.println("Solução Inválida (Letras Maiúsculas) >:(");
+			System.out.println("Soluo Invlida (Letras Maisculas) >:(");
 			System.exit(1);
 			
 		}
@@ -167,9 +167,9 @@ public class WSSolver {
 										sopa.getPonto().getX() + dir.getPonto().getX()*i);
 							}
 							
-							//Se encontrou uma palavra que dê match
+							//Se encontrou uma palavra que d match
 							if(w.equalsIgnoreCase(sol.getWord())) {	
-								//Verificar se a palavra encontrada dá overlap com outras
+								//Verificar se a palavra encontrada d overlap com outras
 								boolean overlapping = false;
 								for(int i = 0; i < n; i++) {
 									overlapping = overlap(solutions.get(i).getStartingPos(),
@@ -179,10 +179,10 @@ public class WSSolver {
 										break;
 									}
 								}
-								//Se a solução já estiver presente, não for um palindromo e
-								//a palavra encontrada não estiver a dar overlap -> solução duplicada
+								//Se a soluo j estiver presente, no for um palindromo e
+								//a palavra encontrada no estiver a dar overlap -> soluo duplicada
 								if(sol.isPresent() && (sol.isPalindrome() && sol.getCount() > 2) && !overlapping) {
-									System.out.println("Solução duplicada >:(");
+									System.out.println("Soluo duplicada >:(");
 									//System.out.println("sol: " + sol);
 									//sopa.printSoup();
 									//System.out.println();
@@ -190,7 +190,7 @@ public class WSSolver {
 									//System.out.println(sopa.getPonto());
 									return false;
 								}
-								//Se a solução não está presente ou é um palindromo válido e não há overlap
+								//Se a soluo no est presente ou  um palindromo vlido e no h overlap
 								else if (!overlapping && (!sol.isPresent() || (sol.isPalindrome() && sol.getCount() == 1))) {
 										sol.setPresent(true);
 										Point p = new Point(sopa.getPonto());

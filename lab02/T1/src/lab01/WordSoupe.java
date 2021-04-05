@@ -60,7 +60,7 @@ public class WordSoupe {
 		int y,x;
 		int i = 0;
 		
-		// verificar se a palavra dá overlap com alguma solução já presente
+		// verificar se a palavra d overlap com alguma soluo j presente
 		int overlap_flg = 0;
 		for (Solution s : solutions) {
 			Point startA, startB, endA, endB;

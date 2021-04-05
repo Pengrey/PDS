@@ -69,7 +69,7 @@ public class WSGenerator {
 			
 			while (parser.hasNext()) {
 				String word = parser.next().toLowerCase();
-				// verificar se a palavra é repetida
+				// verificar se a palavra  repetida
 				if (words.contains(word)) {
 					parser.close();
 					System.out.println("ERROR: duplicate word in file :(");
@@ -94,12 +94,12 @@ public class WSGenerator {
 				boolean set_flag;
 				int n_tries = 0;
 				do {
-					// escolher uma direção aleatória e definir limites de colunas e linhas
+					// escolher uma direo aleatria e definir limites de colunas e linhas
 					Direction dir = null;
 					int rowRange = 0, colRange = 0;
 					Point start = null;
 					
-					switch (rng.nextInt(4)) { // número aleatório entre [0, 4[
+					switch (rng.nextInt(4)) { // nmero aleatrio entre [0, 4[
 						case (0):
 							// determinar aleatoriamente o sentido da palavra
 							rowRange = soupDim - word.length() + 1;
@@ -162,7 +162,7 @@ public class WSGenerator {
 					
 					sol.setStartingPos(start);
 					sol.setEndPos(new Point(start.getY() + dir.getPonto().getY()*(word.length()-1),
-							start.getX() + dir.getPonto().getX()*(word.length()-1)));
+					start.getX() + dir.getPonto().getX()*(word.length()-1)));
 					sol.setDirection(dir);
 					
 					//System.out.println("word len: " + word.length());
@@ -179,7 +179,7 @@ public class WSGenerator {
 			}
 			
 			int n_tries = 0;
-			//preencher o espaço restante da sopa
+			//preencher o espao restante da sopa
 			while(true) {
 				Point endPoint = new Point(0,0);
 				
