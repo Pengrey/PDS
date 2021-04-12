@@ -49,7 +49,7 @@ public class FlightManager {
                     if(optionArgs.size() > 3 || optionArgs.size() < 2){
                         System.out.println("Argumentos não válidos");
                     }else{
-                        addFlight(flights,optionArgs);
+                            addFlight(flights,optionArgs);
                     }
                     break;
                 case "R":
@@ -71,11 +71,24 @@ public class FlightManager {
     public static void addFlight(HashMap<String,Flight> flights,ArrayList<String> args){
         String code = args.get(0);
         Flight flight;
-        if(args.size() == 2){
-            flight = new Flight(code, args.get(1));
+        if(args.get(0).matches("[A-Za-z0-9]+")){
+            if(args.size() == 2){
+                if(args.get(1).matches("^(?=.*?[0-9a-zA-Z])[0-9]*[x][0-9]*$")){
+                    flight = new Flight(code, args.get(1));
+                    flights.put(code, flight);
+                }else{
+                    System.out.println("A configuraçao do avião não está corretamente formatada (Ex: 3x3)");
+                }                
+            }else{
+                if(args.get(1).matches("^(?=.*?[0-9a-zA-Z])[0-9]*[x][0-9]*$") && args.get(2).matches("^(?=.*?[0-9a-zA-Z])[0-9]*[x][0-9]*$")){
+                    flight = new Flight(code, args.get(1), args.get(2));
+                    flights.put(code, flight);
+                }else{
+                    System.out.println("A configuraçao do avião não está corretamente formatada (Ex: 3x3)");
+                }
+            }
         }else{
-            flight = new Flight(code, args.get(1), args.get(2));
+            System.out.println("O código do voo tem que ser alfanúmerico");
         }
-        flights.put(code, flight);
     }
 }
