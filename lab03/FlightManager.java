@@ -1,17 +1,22 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class FlightManager {
     
     public static void main(String[] args){
-        String opt = "";
+        String input = "";
+        String[] inputArgs;
+        ArrayList<String> optionArgs;
         boolean finish = false; 
         ArrayList<Flight> flights = new ArrayList<Flight>();
         Scanner sc = new Scanner(System.in);
         while(!finish){
             System.out.println("Escolha uma opção (H para ajuda): ");
-            opt = sc.next();
-            switch(opt){
+            input = sc.nextLine();
+            inputArgs = input.split(" ");
+            optionArgs = new ArrayList<>(Arrays.asList(inputArgs));
+            switch(optionArgs.get(0)){
                 case "H":
                     System.out.println(   "Opções existentes:\n" 
                                         + "H - Menu de Ajuda"
@@ -29,6 +34,13 @@ public class FlightManager {
                     break;
                 case "M":
                 case "F":
+                    optionArgs.remove(0);
+                    if(optionArgs.size() > 3 || optionArgs.size() < 2){
+                        System.out.println("Argumentos não válidos");
+                    }else{
+                        addFlight(flights,optionArgs);
+                    }
+                    break;
                 case "R":
                 case "C":
                 case "Q":
@@ -37,5 +49,16 @@ public class FlightManager {
             }
         }
         sc.close();
+    }
+
+    public static void addFlight(ArrayList<Flight> flights,ArrayList<String> args){
+        String code = args.get(0);
+        Flight flight;
+        if(args.size() == 2){
+            flight = new Flight(code, args.get(1));
+        }else{
+            flight = new Flight(code, args.get(1), args.get(2));
+        }
+        flights.add(flight);
     }
 }
