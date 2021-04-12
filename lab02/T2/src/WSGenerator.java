@@ -31,7 +31,7 @@ public class WSGenerator {
                                 input = args[i + 1];          //file name was provided
                             else
                                 input = args[i + 1] + ".txt";
-                            file = new File(".\\WSGin\\" + input);
+                            file = new File(input);
                             read = new Scanner(file);
                             hasFile = true;
                         } catch (FileNotFoundException e) {

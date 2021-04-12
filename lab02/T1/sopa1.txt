@@ -12,4 +12,6 @@ XDIBMTQWOHPCRR
 TIVYDGGASGAKJP
 TSTHAEPJSJLEEX
 HBPWBNBBDKETEL
-socket;server;client;protocol;method;private;public;
+socket;server;client;
+protocol;method;
+private;public;

@@ -89,8 +89,8 @@ public class Solution {
 		return endPos;
 	}
 
-	// não me parece que isto deva ser possível, o endPos é determinado pelo startingPos, direction, e wordSize -diogo
-	// Na resolução da sopa é determinado o endPos da palavra, por isso dá jeito ter este setter para não ter de estar a calcular de novo dentro da classe
+	// no me parece que isto deva ser possvel, o endPos  determinado pelo startingPos, direction, e wordSize -diogo
+	// Na resoluo da sopa  determinado o endPos da palavra, por isso d jeito ter este setter para no ter de estar a calcular de novo dentro da classe
 	public void setEndPos(Point endPos) {
 		this.endPos = endPos;
 	}

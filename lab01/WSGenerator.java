@@ -3,8 +3,15 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Scanner;
+import java.util.Set;
 import java.util.Random;
+
+//=================Done by=========================
+//          Rodrigo Lima nMec 98475
+//          Gonçalo Machado nMec 98359
+//=================================================
 
 public class WSGenerator {
     public static void main(String[] args){
@@ -68,16 +75,28 @@ public class WSGenerator {
                     throw new puzzleWrongDimensions("Size too small for number of words given.");
                 }
 
+                //Check for duplicated words
+                Set<String> testSet = new HashSet<String>();
+                for (String word : wordList) {
+                if(!testSet.add(word.toUpperCase())){
+                    System.out.println("Duplicate word: " + word);
+                    throw new duplicateWordException("Duplicate word: " + word);
+                }
+                }
                 String[][] wordSoup = wsGen(wordList, size); //Generate word soup
                 saveData(dataList,wordSoup, fileOutput); // Save word soup in file
                 System.exit(0);
-            } catch (FileNotFoundException e) {
+            } catch (FileNotFoundException e){
                 System.out.println("An error occurred.");
-            } catch (puzzleWrongDimensions e) {
+            } catch (puzzleWrongDimensions e){
                 System.out.println("An error occurred.");
             } catch (wordUpperCaseOnly e){
                 System.out.println("An error occurred.");
             } catch (wordNonAlpha e){
+                System.out.println("An error occurred.");
+            } catch (NumberFormatException e){
+                System.out.println("An error occurred.");
+            } catch (duplicateWordException e){
                 System.out.println("An error occurred.");
             }
         }

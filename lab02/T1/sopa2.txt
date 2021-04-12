@@ -12,4 +12,5 @@ SMAPTSTALYLATI
 HYLGSEGNNCEKGG
 KUFYKIMYGABCWK
 BOCJEHBCXXIJUY
-portugal;spain;france;germany;italy;sweden;russia;
+portugal;spain;france;
+germany;italy;sweden;russia;

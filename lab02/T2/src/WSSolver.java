@@ -9,7 +9,7 @@ public class WSSolver {
     public static void main(String[] args) {
         try{
             //==========WordSoup Format Verification============
-            File file = new File(".\\WSGout\\"+args[0]);
+            File file = new File(args[0]);
             Scanner read = new Scanner(file);
             String line = read.nextLine();
             //Invalid Characters in Soup

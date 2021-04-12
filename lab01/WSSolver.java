@@ -8,6 +8,12 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+
+//=================Done by=========================
+//          Rodrigo Lima nMec 98475
+//          Gonçalo Machado nMec 98359
+//=================================================
+
 public class WSSolver {
     public static void main(String[] args){
         try {
