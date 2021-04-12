@@ -1,4 +1,4 @@
-package lab3;
+package galo;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.lang.reflect.Array;
 
 import javax.swing.JToggleButton;
 
@@ -18,6 +19,7 @@ public class JGalo extends JFrame implements ActionListener {
 	private JPanel jPanel = null;
 	private JToggleButton bt[];
 	JGaloInterface jogo ; 
+
 
 	public JGalo(JGaloInterface myGreatGame) {
 		super("Jogo da Galinha");
@@ -61,6 +63,16 @@ public class JGalo extends JFrame implements ActionListener {
 	}
 
 	public static void main(String args[]) {
-		new JGalo( /* something here */ );
+		Game myGreatGame;
+		if(args.length != 0){
+			if(args[0].charAt(0) == 'O' || args[0].charAt(0) == 'o'){
+				myGreatGame = new Game('O');
+			}else{
+				myGreatGame = new Game('X');
+			}
+		}else{
+			myGreatGame = new Game('X');
+		}
+		new JGalo(myGreatGame);
 	}
 } 
