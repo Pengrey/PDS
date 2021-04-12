@@ -1,22 +1,24 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class FlightManager {
     
     public static void main(String[] args){
-        String input = "";
+        String input = "", opt = "";
         String[] inputArgs;
         ArrayList<String> optionArgs;
         boolean finish = false; 
-        ArrayList<Flight> flights = new ArrayList<Flight>();
+        HashMap<String,Flight> flights = new HashMap<String,Flight>();
         Scanner sc = new Scanner(System.in);
         while(!finish){
             System.out.println("Escolha uma opção (H para ajuda): ");
             input = sc.nextLine();
             inputArgs = input.split(" ");
             optionArgs = new ArrayList<>(Arrays.asList(inputArgs));
-            switch(optionArgs.get(0)){
+            opt = optionArgs.remove(0);
+            switch(opt){
                 case "H":
                     System.out.println(   "Opções existentes:\n" 
                                         + "H - Menu de Ajuda"
@@ -33,8 +35,13 @@ public class FlightManager {
                 case "I":
                     break;
                 case "M":
+                    if(optionArgs.size() != 1){
+                        System.out.println("Argumentos não válidos");
+                    }else{
+                        flights.get(optionArgs.get(0)).printFlight();;
+                    }
+                    break;
                 case "F":
-                    optionArgs.remove(0);
                     if(optionArgs.size() > 3 || optionArgs.size() < 2){
                         System.out.println("Argumentos não válidos");
                     }else{
@@ -42,6 +49,10 @@ public class FlightManager {
                     }
                     break;
                 case "R":
+                    if(optionArgs.size() > 3 || optionArgs.size() < 2){
+                        
+                    }
+                    break;
                 case "C":
                 case "Q":
                     finish = true;
@@ -51,7 +62,7 @@ public class FlightManager {
         sc.close();
     }
 
-    public static void addFlight(ArrayList<Flight> flights,ArrayList<String> args){
+    public static void addFlight(HashMap<String,Flight> flights,ArrayList<String> args){
         String code = args.get(0);
         Flight flight;
         if(args.size() == 2){
@@ -59,6 +70,6 @@ public class FlightManager {
         }else{
             flight = new Flight(code, args.get(1), args.get(2));
         }
-        flights.add(flight);
+        flights.put(code, flight);
     }
 }
