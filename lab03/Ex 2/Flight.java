@@ -65,8 +65,42 @@ public class Flight {
         return turColumns;
     }
 
-    public void addReserve(){
-
+    public void addReserve(String type,int numSeats){
+        if(type.equals("T")){
+            int j, emptySeats;
+            boolean foundEmptyRow = false;
+            for(j = 0; j < this.turColumns; j++){
+                emptySeats = 0;
+                for(int i = 0; i < this.turRows;i++){
+                    if(this.turSeats[i][j] == 0){
+                        emptySeats++;
+                    }
+                }
+                if(emptySeats == this.turRows){
+                    foundEmptyRow = true;
+                    break;
+                }
+            }
+            if(foundEmptyRow){
+                for(int x = j; x < this.turColumns; x++){
+                    for(int y = 0; y < this.turRows; y++){
+                        turSeats[y][x] = this.reserveCounter + 1;
+                        System.out.println("j antes: " + j);
+                        j--;
+                        System.out.println("j depois: " + j);
+                        if(j == 0){
+                            break;
+                        }
+                    }
+                    if(j == 0){
+                        break;
+                    }
+                }
+            }
+        }else{
+            System.out.println("Not functional yet");
+        }
+        //reserveCounter++; // fazer quando vir que é possivel
     }
 
     public void printFlight(){

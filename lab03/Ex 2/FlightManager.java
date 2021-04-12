@@ -5,11 +5,11 @@ import java.util.Scanner;
 
 public class FlightManager {
     
-    public static void main(String[] args){
-        String input = "", opt = "";
-        String[] inputArgs;
-        ArrayList<String> optionArgs;
-        boolean finish = false; 
+    public static void main(String[] args){ //Ideia para a option I e para conseguir ler ficheiros com comandos:
+        String input = "", opt = "";        //  -Fazer o switch case numa funçao a parte
+        String[] inputArgs;                 //  -Chamar no main essa funçao na primeira vez caso nao seja dado nenhum ficheiro de comandos
+        ArrayList<String> optionArgs;       //  -No caso do ficheiro de comandos, ler o ficheiro e correr a funçao menu para cada linha do ficheiro
+        boolean finish = false;             //  -No caso da opçao I, ler o file e fazer a opçao F na primeira linha e depois option R para reservas
         HashMap<String,Flight> flights = new HashMap<String,Flight>();
         Scanner sc = new Scanner(System.in);
         while(!finish){
@@ -38,7 +38,11 @@ public class FlightManager {
                     if(optionArgs.size() != 1){
                         System.out.println("Argumentos não válidos");
                     }else{
-                        flights.get(optionArgs.get(0)).printFlight();;
+                        try {
+                            flights.get(optionArgs.get(0)).printFlight();
+                        } catch (NullPointerException e) {
+                            System.out.println("O voo inserido não está registado");
+                        }
                     }
                     break;
                 case "F":
@@ -49,8 +53,10 @@ public class FlightManager {
                     }
                     break;
                 case "R":
-                    if(optionArgs.size() > 3 || optionArgs.size() < 2){
-                        
+                    if(optionArgs.size() != 3){
+                        System.out.println("Argumentos não válidos");
+                    } else{
+                        flights.get(optionArgs.get(0)).addReserve(optionArgs.get(1), Integer.parseInt(optionArgs.get(2)));
                     }
                     break;
                 case "C":
