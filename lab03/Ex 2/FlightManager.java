@@ -55,7 +55,7 @@ public class FlightManager {
                 case "R":
                     if(optionArgs.size() != 3){
                         System.out.println("Argumentos não válidos");
-                    } else{
+                    } else{ // need to do argument validation, only pass if T or E
                         flights.get(optionArgs.get(0)).addReserve(optionArgs.get(1), Integer.parseInt(optionArgs.get(2)));
                     }
                     break;

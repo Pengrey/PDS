@@ -1,7 +1,3 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
 public class Flight {
     
     private String code;
@@ -12,13 +8,11 @@ public class Flight {
     private int turRows;
     private int[][] execSeats;
     private int[][] turSeats;
-    private Map<Integer,ArrayList<String>> reserves;
     
 
     public Flight(String code, String turSeats){
         this.code = code;
-        this.reserveCounter = 0;
-        this.reserves = new HashMap<Integer, ArrayList<String>>();
+        this.reserveCounter = 1;
         String[] turConfig = turSeats.split("x");
         this.turRows = Integer.parseInt(turConfig[0]);
         this.turRowSeats = Integer.parseInt(turConfig[1]);
@@ -27,8 +21,7 @@ public class Flight {
 
     public Flight(String code, String execSeats, String turSeats){
         this.code = code;
-        this.reserveCounter = 0;
-        this.reserves = new HashMap<Integer, ArrayList<String>>();
+        this.reserveCounter = 1;
         String[] turConfig = turSeats.split("x");
         this.turRows = Integer.parseInt(turConfig[0]);
         this.turRowSeats = Integer.parseInt(turConfig[1]);
@@ -59,37 +52,60 @@ public class Flight {
         return this.turRows;
     }
 
-    public void addReserve(String type,int numSeats){   //Não está completa, tenho que reorganizar pois tenho que tratar do caso em que sobre 1 row vazia e
-        if(type.equals("T")){                           //tratar de casos em que o numSeats é maior que RowSeats
-            int j, emptySeats, rowsNeeded;
-            rowsNeeded = (int) Math.ceil(numSeats/3.0);
-            boolean foundEmptyRow = false;
-            System.out.println("turRows: " + this.turRows + " turRowSeats: " + this.turRowSeats);
-            for(j = 0; j < this.turRows; j++){
+    public void addReserve(String type,int numSeats){
+        boolean addedReserve; // not done, falta tratar dos prints quando se faz uma reserva, fazer addedReserveSupport devolver um String array com os lugares que foram usados
+        if(type.equals("T")){
+            addedReserve = addedReserveSupport(this.turSeats, numSeats);
+            if(!addedReserve){
+                System.out.println("Não foi possivel obter lugares para a reserva: " + type + " " + numSeats);
+            }
+        }else{
+            addedReserve = addedReserveSupport(this.execSeats, numSeats);
+            if(!addedReserve){
+                System.out.println("Não foi possivel obter lugares para a reserva: " + type + " " + numSeats);
+            }
+        }
+    }
+
+    private boolean addedReserveSupport(int[][] xSeats,int numSeats){
+        int xRowSeats = xSeats.length;
+        int xRows = xSeats[0].length;
+        int j, emptySeats;
+            for(j = 0; j < xRows; j++){
                 emptySeats = 0;
-                for(int i = 0; i < this.turRowSeats;i++){
-                    System.out.println("Row: " + j + " Seat: " + i + " Value: " + this.turSeats[i][j]);
-                    if(this.turSeats[i][j] == 0){
+                if(numSeats == 0){
+                    break;
+                }
+                for(int i = 0; i < xRowSeats;i++){
+                    if(xSeats[i][j] == 0){
                         emptySeats++;
-                        System.out.println("Empty: " + emptySeats);
                     }
                 }
-                if(emptySeats == this.turRowSeats){
-                    foundEmptyRow = true;
-                    break;
+                if(emptySeats == xRowSeats){
+                    for(int x = j; x < xRows; x++){
+                        for(int y = 0; y < xRowSeats; y++){
+                            xSeats[y][x] = reserveCounter;
+                            numSeats--;
+                            if(numSeats == 0){
+                                break;
+                            }
+                        }
+                        if(numSeats == 0){
+                            break;
+                        }
+                    }
                 }
             }
 
-            System.out.println("j: " + j);
-            if(foundEmptyRow){
-                for(int x = j; x < this.turRows; x++){
-                    for(int y = 0; y < this.turRowSeats; y++){
-                        turSeats[y][x] = this.reserveCounter + 1;
-                        System.out.println("numSeats antes: " + numSeats + " y: " + y);
-                        numSeats--;
-                        System.out.println("numSeats depois: " + numSeats);
-                        if(numSeats == 0){
-                            break;
+            if(numSeats != 0){
+                for(j = 0; j < xRows; j++){
+                    for(int i = 0; i < xRowSeats;i++){
+                        if(xSeats[i][j] == 0){
+                            xSeats[i][j] = reserveCounter;
+                            numSeats--;
+                            if(numSeats == 0){
+                                break;
+                            }
                         }
                     }
                     if(numSeats == 0){
@@ -97,14 +113,21 @@ public class Flight {
                     }
                 }
             }
-        }else{
-            System.out.println("Not functional yet");
-        }
-        //reserveCounter++; // fazer quando vir que é possivel
+            if(numSeats !=0){
+                for(j = 0; j < xRows; j++){
+                    for(int i = 0; i < xRowSeats;i++){
+                        if(xSeats[i][j] == reserveCounter){
+                            xSeats[i][j] = 0;
+                        }
+                    }
+                }
+                return false;
+            }
+            this.reserveCounter++;
+            return true;
     }
 
     public void printFlight(){
-        System.out.println("turRows: " + this.turRows + " turRowSeats: " + this.turRowSeats);
         System.out.print("   ");
         for(int i = 1; i < (this.execRows + this.turRows + 1); i++){
             System.out.printf("%3d",i);
