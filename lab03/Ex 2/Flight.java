@@ -53,21 +53,39 @@ public class Flight {
     }
 
     public void addReserve(String type,int numSeats){
-        boolean addedReserve; // not done, falta tratar dos prints quando se faz uma reserva, fazer addedReserveSupport devolver um String array com os lugares que foram usados
+        String[] seatsUsed;
         if(type.equals("T")){
-            addedReserve = addedReserveSupport(this.turSeats, numSeats);
-            if(!addedReserve){
+            seatsUsed = addedReserveSupport(this.turSeats, numSeats, true);
+            if(seatsUsed[numSeats-1] == null){
                 System.out.println("Não foi possivel obter lugares para a reserva: " + type + " " + numSeats);
+            }else{
+                System.out.print(this.code + ":" + (this.reserveCounter-1) + " = ");
+                for (String string : seatsUsed) {
+                    System.out.print(" " + string + " |");
+                }
+                System.out.println("");
             }
         }else{
-            addedReserve = addedReserveSupport(this.execSeats, numSeats);
-            if(!addedReserve){
+            seatsUsed = addedReserveSupport(this.execSeats, numSeats, false);
+            if(seatsUsed[numSeats-1] == null){
                 System.out.println("Não foi possivel obter lugares para a reserva: " + type + " " + numSeats);
+            }else{
+                System.out.print(this.code + ":" + (this.reserveCounter-1) + " = ");
+                for (String string : seatsUsed) {
+                    System.out.print(" " + string + " |");
+                }
+                System.out.println("");
             }
         }
     }
 
-    private boolean addedReserveSupport(int[][] xSeats,int numSeats){
+    private String[] addedReserveSupport(int[][] xSeats,int numSeats, boolean isTur){
+        int startRow = 1;
+        if(isTur){
+            startRow = this.execRows + 1;
+        }
+        String[] seatsUsed = new String[numSeats];
+        int seatsUsedCounter = 0;
         int xRowSeats = xSeats.length;
         int xRows = xSeats[0].length;
         int j, emptySeats;
@@ -85,6 +103,8 @@ public class Flight {
                     for(int x = j; x < xRows; x++){
                         for(int y = 0; y < xRowSeats; y++){
                             xSeats[y][x] = reserveCounter;
+                            seatsUsed[seatsUsedCounter] = String.valueOf((char)(y + 65)) + String.valueOf(x + startRow);
+                            seatsUsedCounter++;
                             numSeats--;
                             if(numSeats == 0){
                                 break;
@@ -102,6 +122,8 @@ public class Flight {
                     for(int i = 0; i < xRowSeats;i++){
                         if(xSeats[i][j] == 0){
                             xSeats[i][j] = reserveCounter;
+                            seatsUsed[seatsUsedCounter] = String.valueOf((char)(i + 65)) + String.valueOf(j + startRow);
+                            seatsUsedCounter++;
                             numSeats--;
                             if(numSeats == 0){
                                 break;
@@ -121,10 +143,10 @@ public class Flight {
                         }
                     }
                 }
-                return false;
+                return seatsUsed;
             }
             this.reserveCounter++;
-            return true;
+            return seatsUsed;
     }
 
     public void printFlight(){
