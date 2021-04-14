@@ -167,6 +167,7 @@ public class Flight {
     }
 
     public void printFlight(){
+        System.out.println();
         System.out.print("   ");
         for(int i = 1; i < (this.execRows + this.turRows + 1); i++){
             System.out.printf("%3d",i);
@@ -212,5 +213,6 @@ public class Flight {
                 System.out.println();
             }
         }
+        System.out.println();
     }
 }

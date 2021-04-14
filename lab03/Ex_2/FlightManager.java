@@ -13,6 +13,29 @@ public class FlightManager {
         ArrayList<String> optionArgs;       //  -No caso do ficheiro de comandos, ler o ficheiro e correr a funçao menu para cada linha do ficheiro
         boolean finish = false;             //  -No caso da opçao I, ler o file e fazer a opçao F na primeira linha e depois option R para reservas
         HashMap<String,Flight> flights = new HashMap<String,Flight>();
+        if(args.length > 1){
+            System.out.println("O flightManager pode aceitar no máximo 1 argumento");
+            System.exit(0);
+        }
+        if(args.length == 1){
+            try {
+                Scanner fileScanner = new Scanner(new File(args[0]));
+                String line;
+                while(fileScanner.hasNextLine()){
+                    line = fileScanner.nextLine();
+                    inputArgs = line.split(" ");
+                    optionArgs = new ArrayList<>(Arrays.asList(inputArgs));
+                    opt = optionArgs.remove(0);
+                    finish = menu(flights, opt, optionArgs);
+                    if (finish){
+                        System.exit(0);
+                    }
+                }
+            } catch (FileNotFoundException e) {
+                System.out.println("Ficheiro não encontrado");
+                System.exit(0);
+            }
+        }
         Scanner sc = new Scanner(System.in);
         while(!finish){
             System.out.println("Escolha uma opção (H para ajuda): ");
