@@ -161,6 +161,10 @@ public class FlightManager {
         String code = args.get(0);
         Flight flight;
         if(args.get(0).matches("[A-Za-z0-9]+")){
+            if (flights.containsKey(args.get(0))){
+                System.out.println("Já existe um voo registado com esse código");
+                return;
+            }
             if(args.size() == 2){
                 if(args.get(1).matches("^(?=.*?[0-9a-zA-Z])[0-9]*[x][0-9]*$")){
                     flight = new Flight(code, args.get(1));
