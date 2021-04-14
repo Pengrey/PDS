@@ -69,7 +69,7 @@ public class FlightManager {
                                     + "flight_code:sequential_reservation_number. Ex: Tp1930:2\n"
                                     + "Q - Termina o programa");
                 break;
-            case "I":                                                                                   //Read file with a flight code, configuration and reserves
+            case "I":                                                                                   //Read file with a flight code, configuration and reservations
                 if(optionArgs.size() != 1){                                                             //Verify number of arguments
                     System.out.println("Argumentos inválidos");
                 }else{
@@ -128,7 +128,7 @@ public class FlightManager {
                     try {
                         numSeats = Integer.parseInt(optionArgs.get(2));                                 //Turn the string that indicates the number of seats wanted into int
                         if(optionArgs.get(1).matches("T") || optionArgs.get(1).matches("E")){           //Check if the type given is T or E, otherwise it is not valid
-                            flights.get(optionArgs.get(0)).addReserve(optionArgs.get(1), numSeats);     //Make reservation
+                            flights.get(optionArgs.get(0)).addReservation(optionArgs.get(1), numSeats);     //Make reservation
                         }else{
                             System.out.println("Argumetos inválidos");
                         }
@@ -146,7 +146,7 @@ public class FlightManager {
                     if(optionArgs.get(0).matches("^(?=.*?[0-9a-zA-Z:])[0-9a-zA-Z]*[:][0-9]*$")){        //Check if argument has the valid pattern
                         String[] cancelArgs = optionArgs.get(0).split(":");                             //Split the argument into 2 arguments, the flight code and the reservation to be cancelled
                         try{
-                            flights.get(cancelArgs[0]).cancelReserve(Integer.parseInt(cancelArgs[1]));  //Cancel the reservation
+                            flights.get(cancelArgs[0]).cancelReservation(Integer.parseInt(cancelArgs[1]));  //Cancel the reservation
                         } catch (NullPointerException e){                                               //Catch exception when the fligh is not registered
                             System.out.println("O voo inserido não está registado");
                         } catch (NumberFormatException e){                                              //Catch exception when the reservation given by the user has letters
