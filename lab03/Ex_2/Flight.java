@@ -120,7 +120,7 @@ public class Flight {
                     for(int x = j; x < xRows; x++){
                         for(int y = 0; y < xRowSeats; y++){
                             xSeats[y][x] = reserveCounter;
-                            seatsUsed[seatsUsedCounter] = String.valueOf((char)(y + 65)) + String.valueOf(x + startRow);
+                            seatsUsed[seatsUsedCounter] = String.valueOf(x + startRow) + String.valueOf((char)(y + 65));
                             seatsUsedCounter++;
                             numSeats--;
                             if(numSeats == 0){
@@ -139,7 +139,7 @@ public class Flight {
                     for(int i = 0; i < xRowSeats;i++){
                         if(xSeats[i][j] == 0){
                             xSeats[i][j] = reserveCounter;
-                            seatsUsed[seatsUsedCounter] = String.valueOf((char)(i + 65)) + String.valueOf(j + startRow);
+                            seatsUsed[seatsUsedCounter] = String.valueOf(j + startRow) + String.valueOf((char)(i + 65));
                             seatsUsedCounter++;
                             numSeats--;
                             if(numSeats == 0){

@@ -7,11 +7,11 @@ import java.util.Scanner;
 
 public class FlightManager {
     
-    public static void main(String[] args){ //Ideia para a option I e para conseguir ler ficheiros com comandos:
-        String input = "", opt = "";        //  -Fazer o switch case numa funçao a parte
-        String[] inputArgs;                 //  -Chamar no main essa funçao na primeira vez caso nao seja dado nenhum ficheiro de comandos
-        ArrayList<String> optionArgs;       //  -No caso do ficheiro de comandos, ler o ficheiro e correr a funçao menu para cada linha do ficheiro
-        boolean finish = false;             //  -No caso da opçao I, ler o file e fazer a opçao F na primeira linha e depois option R para reservas
+    public static void main(String[] args){
+        String input = "", opt = "";
+        String[] inputArgs;
+        ArrayList<String> optionArgs;
+        boolean finish = false;
         HashMap<String,Flight> flights = new HashMap<String,Flight>();
         if(args.length > 1){
             System.out.println("O flightManager pode aceitar no máximo 1 argumento");
@@ -65,7 +65,7 @@ public class FlightManager {
                 return false;
             case "I":
                 if(optionArgs.size() != 1){
-                    System.out.println("Argumentos não válidos");
+                    System.out.println("Argumentos inválidos");
                 }else{
                     try{
                         Scanner fileSC = new Scanner(new File(optionArgs.get(0)));
@@ -98,7 +98,7 @@ public class FlightManager {
                 return false;
             case "M":
                 if(optionArgs.size() != 1){
-                    System.out.println("Argumentos não válidos");
+                    System.out.println("Argumentos inválidos");
                 }else{
                     try {
                         flights.get(optionArgs.get(0)).printFlight();
@@ -109,24 +109,44 @@ public class FlightManager {
                 return false;
             case "F":
                 if(optionArgs.size() > 3 || optionArgs.size() < 2){
-                    System.out.println("Argumentos não válidos");
+                    System.out.println("Argumentos inválidos");
                 }else{
                         addFlight(flights,optionArgs);
                 }
                 return false;
             case "R":
                 if(optionArgs.size() != 3){
-                    System.out.println("Argumentos não válidos");
-                } else{ // need to do argument validation, only pass if T or E
-                    flights.get(optionArgs.get(0)).addReserve(optionArgs.get(1), Integer.parseInt(optionArgs.get(2)));
+                    System.out.println("Argumentos inválidos");
+                } else{
+                    int numSeats;
+                    try {
+                        numSeats = Integer.parseInt(optionArgs.get(2));
+                        if(optionArgs.get(1).matches("T") || optionArgs.get(1).matches("E")){
+                            flights.get(optionArgs.get(0)).addReserve(optionArgs.get(1), numSeats);
+                        }else{
+                            System.out.println("Argumetos inválidos");
+                        }
+                    } catch (NumberFormatException e) {
+                        System.out.println("Argumentos inválidos");
+                    } catch (NullPointerException e){
+                        System.out.println("O voo inserido não está registado");
+                    }               
                 }
                 return false;
             case "C":
                 if(optionArgs.size() != 1){
-                    System.out.println("Argumentos não válidos");
+                    System.out.println("Argumentos inválidos");
                 }else{
-                    String[] cancelArgs = optionArgs.get(0).split(":");
-                    flights.get(cancelArgs[0]).cancelReserve(Integer.parseInt(cancelArgs[1]));
+                    if(optionArgs.get(0).matches("^(?=.*?[0-9a-zA-Z:])[0-9a-zA-Z]*[:][0-9]*$")){
+                        String[] cancelArgs = optionArgs.get(0).split(":");
+                        try{
+                            flights.get(cancelArgs[0]).cancelReserve(Integer.parseInt(cancelArgs[1]));
+                        } catch (NullPointerException e){
+                            System.out.println("O voo inserido não está registado");
+                        } catch (NumberFormatException e){
+                            System.out.println("Argumentos inválidos");
+                        }
+                    }
                 }
                 return false;
             case "Q":
