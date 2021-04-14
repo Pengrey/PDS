@@ -1,3 +1,5 @@
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -18,54 +20,98 @@ public class FlightManager {
             inputArgs = input.split(" ");
             optionArgs = new ArrayList<>(Arrays.asList(inputArgs));
             opt = optionArgs.remove(0);
-            switch(opt){
-                case "H":
-                    System.out.println(   "Opções existentes:\n" 
-                                        + "H - Menu de Ajuda\n"
-                                        + "I filename - Lê um ficheiro que contém informação sobre um voo.\n"
-                                        + "M fligh_code - Exibe o mapa das reservas de um voo.\n"
-                                        + "F flight_code num_seats_executive num_setas_tourist - Acrescenta um novo voo com código,"
-                                        + "lugares em executiva e lugares em turística. Os lugares em executiva são opcionais.\n"
-                                        + "R flight_code class number_seats - Acrescenta uma nova reserva a um voo, com indicação"
-                                        + "do código de voo, da classe(T / E), e do número de lugares desejados.\n"
-                                        + "C reservation_code - Cancelar uma reserva. O código de reserva tem o formato" 
-                                        + "flight_code:sequential_reservation_number. Ex: Tp1930:2\n"
-                                        + "Q - Termina o programa");
-                    break;
-                case "I":
-                    break;
-                case "M":
-                    if(optionArgs.size() != 1){
-                        System.out.println("Argumentos não válidos");
-                    }else{
-                        try {
-                            flights.get(optionArgs.get(0)).printFlight();
-                        } catch (NullPointerException e) {
-                            System.out.println("O voo inserido não está registado");
-                        }
-                    }
-                    break;
-                case "F":
-                    if(optionArgs.size() > 3 || optionArgs.size() < 2){
-                        System.out.println("Argumentos não válidos");
-                    }else{
-                            addFlight(flights,optionArgs);
-                    }
-                    break;
-                case "R":
-                    if(optionArgs.size() != 3){
-                        System.out.println("Argumentos não válidos");
-                    } else{ // need to do argument validation, only pass if T or E
-                        flights.get(optionArgs.get(0)).addReserve(optionArgs.get(1), Integer.parseInt(optionArgs.get(2)));
-                    }
-                    break;
-                case "C":
-                case "Q":
-                    finish = true;
-                    break;
-            }
+            finish = menu(flights, opt, optionArgs);
         }
         sc.close();
+    }
+
+    public static boolean menu(HashMap<String,Flight> flights, String opt, ArrayList<String> optionArgs){
+        switch(opt){
+            case "H":
+                System.out.println(   "Opções existentes:\n" 
+                                    + "H - Menu de Ajuda\n"
+                                    + "I filename - Lê um ficheiro que contém informação sobre um voo.\n"
+                                    + "M fligh_code - Exibe o mapa das reservas de um voo.\n"
+                                    + "F flight_code num_seats_executive num_setas_tourist - Acrescenta um novo voo com código,"
+                                    + "lugares em executiva e lugares em turística. Os lugares em executiva são opcionais.\n"
+                                    + "R flight_code class number_seats - Acrescenta uma nova reserva a um voo, com indicação"
+                                    + "do código de voo, da classe(T / E), e do número de lugares desejados.\n"
+                                    + "C reservation_code - Cancelar uma reserva. O código de reserva tem o formato" 
+                                    + "flight_code:sequential_reservation_number. Ex: Tp1930:2\n"
+                                    + "Q - Termina o programa");
+                return false;
+            case "I":
+                if(optionArgs.size() != 1){
+                    System.out.println("Argumentos não válidos");
+                }else{
+                    try{
+                        Scanner fileSC = new Scanner(new File(optionArgs.get(0)));
+                        String line, code;
+                        ArrayList<String> fileArgs;
+                        String[] input;
+                        line = fileSC.nextLine();
+                        if(line.startsWith(">")){
+                            line = line.substring(1);
+                            input = line.split(" ");
+                            fileArgs = new ArrayList<>(Arrays.asList(input));
+                            code = fileArgs.get(0);
+                            menu(flights, "F", fileArgs);
+                            while(fileSC.hasNextLine()){
+                                line = fileSC.nextLine();
+                                input = line.split(" ");
+                                fileArgs = new ArrayList<>(Arrays.asList(input));
+                                fileArgs.add(0, code);
+                                menu(flights, "R", fileArgs);
+                            }
+                            fileSC.close();
+                        }else{
+                            System.out.println("O ficheiro tem que começar com o carater >");
+                        }
+                    }catch (FileNotFoundException e){
+                        System.out.println("Ficheiro não encontrado");
+                    }
+                    
+                }
+                return false;
+            case "M":
+                if(optionArgs.size() != 1){
+                    System.out.println("Argumentos não válidos");
+                }else{
+                    try {
+                        flights.get(optionArgs.get(0)).printFlight();
+                    } catch (NullPointerException e) {
+                        System.out.println("O voo inserido não está registado");
+                    }
+                }
+                return false;
+            case "F":
+                if(optionArgs.size() > 3 || optionArgs.size() < 2){
+                    System.out.println("Argumentos não válidos");
+                }else{
+                        addFlight(flights,optionArgs);
+                }
+                return false;
+            case "R":
+                if(optionArgs.size() != 3){
+                    System.out.println("Argumentos não válidos");
+                } else{ // need to do argument validation, only pass if T or E
+                    flights.get(optionArgs.get(0)).addReserve(optionArgs.get(1), Integer.parseInt(optionArgs.get(2)));
+                }
+                return false;
+            case "C":
+                if(optionArgs.size() != 1){
+                    System.out.println("Argumentos não válidos");
+                }else{
+                    String[] cancelArgs = optionArgs.get(0).split(":");
+                    flights.get(cancelArgs[0]).cancelReserve(Integer.parseInt(cancelArgs[1]));
+                }
+                return false;
+            case "Q":
+                return true;
+            default:
+                System.out.println("A opção inserida não é válida");
+                return false;
+        }
     }
 
     public static void addFlight(HashMap<String,Flight> flights,ArrayList<String> args){

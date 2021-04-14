@@ -52,6 +52,23 @@ public class Flight {
         return this.turRows;
     }
 
+    public void cancelReserve(int numReserve){
+        for(int j = 0; j < this.execRows; j++){
+            for(int i = 0; i < this.execRowSeats;i++){
+                if(this.execSeats[i][j] == numReserve){
+                    this.execSeats[i][j] = 0;
+                }
+            }
+        }
+        for(int j = 0; j < this.turRows; j++){
+            for(int i = 0; i < this.turRowSeats;i++){
+                if(this.turSeats[i][j] == numReserve){
+                    this.turSeats[i][j] = 0;
+                }
+            }
+        }
+    }
+
     public void addReserve(String type,int numSeats){
         String[] seatsUsed;
         if(type.equals("T")){
