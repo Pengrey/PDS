@@ -1,3 +1,8 @@
+//=================Done by=========================
+//          Rodrigo Lima nMec 98475
+//          Gonçalo Machado nMec 98359
+//=================================================
+
 public class Flight {
     
     private String code;
@@ -168,6 +173,7 @@ public class Flight {
 
     public void printFlight(){
         System.out.println();
+        System.out.println(this.code);
         System.out.print("   ");
         for(int i = 1; i < (this.execRows + this.turRows + 1); i++){
             System.out.printf("%3d",i);
