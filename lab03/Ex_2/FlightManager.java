@@ -21,7 +21,7 @@ public class FlightManager {
             switch(opt){
                 case "H":
                     System.out.println(   "Opções existentes:\n" 
-                                        + "H - Menu de Ajuda"
+                                        + "H - Menu de Ajuda\n"
                                         + "I filename - Lê um ficheiro que contém informação sobre um voo.\n"
                                         + "M fligh_code - Exibe o mapa das reservas de um voo.\n"
                                         + "F flight_code num_seats_executive num_setas_tourist - Acrescenta um novo voo com código,"

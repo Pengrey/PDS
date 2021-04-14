@@ -154,7 +154,7 @@ public class Flight {
         for(int i = 1; i < (this.execRows + this.turRows + 1); i++){
             System.out.printf("%3d",i);
         }
-        System.out.println("");
+        System.out.println();
         if(this.execRowSeats < this.turRowSeats){
             for(int j = 0; j < this.execRowSeats; j++){
                 System.out.printf("%3s", String.valueOf((char)(j + 65)));
@@ -164,7 +164,7 @@ public class Flight {
                 for(int i = 0; i < this.turRows; i++){
                     System.out.printf("%3d", this.turSeats[j][i]);
                 }
-                System.out.println("");
+                System.out.println();
             }
             for(int j = this.execRowSeats; j < this.turRowSeats; j++){
                 System.out.printf("%3s", String.valueOf((char)(j + 65)));
@@ -174,7 +174,7 @@ public class Flight {
                 for(int i = 0; i < this.turRows; i++){
                     System.out.printf("%3d", this.turSeats[j][i]);
                 }
-                System.out.println("");
+                System.out.println();
             }
         }else{
             for(int j = 0; j < this.turRowSeats; j++){
@@ -185,14 +185,14 @@ public class Flight {
                 for(int i = 0; i < this.turRows; i++){
                     System.out.printf("%3d", this.turSeats[j][i]);
                 }
-                System.out.println("");
+                System.out.println();
             }
             for(int j = this.turRowSeats; j < this.execRows; j++ ){
                 System.out.printf("%3s", String.valueOf((char)(j + 65)));
                 for(int i = 0; i < this.execRowSeats; i++){
                     System.out.printf("%3d", this.execSeats[j][i]);
                 }
-                System.out.println("");
+                System.out.println();
             }
         }
     }
