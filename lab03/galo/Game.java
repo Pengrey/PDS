@@ -1,5 +1,10 @@
 package galo;
 
+//=================Done by=========================
+//          Rodrigo Lima nMec 98475
+//          Gonçalo Machado nMec 98359
+//=================================================
+
 public class Game implements JGaloInterface {
     private int[][] Jogadas;
     private char Jogador, Resultado;
