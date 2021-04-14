@@ -63,16 +63,16 @@ public class JGalo extends JFrame implements ActionListener {
 	}
 
 	public static void main(String args[]) {
-		Game myGreatGame;
+		Game myGreatGame;											
 		if(args.length != 0){
-			if(args[0].charAt(0) == 'O' || args[0].charAt(0) == 'o'){
-				myGreatGame = new Game('O');
+			if(args[0].charAt(0) == 'O' || args[0].charAt(0) == 'o'){	// Check if player has given an argument to start the game with O's turn
+				myGreatGame = new Game('O');							// Set first turn to O
 			}else{
-				myGreatGame = new Game('X');
+				myGreatGame = new Game('X');							// Set first turn to X
 			}
-		}else{
-			myGreatGame = new Game('X');
+		}else{	
+			myGreatGame = new Game('X');								// Set default turn to X
 		}
-		new JGalo(myGreatGame);
+		new JGalo(myGreatGame);											// Create game
 	}
 } 
