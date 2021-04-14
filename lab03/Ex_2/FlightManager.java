@@ -10,6 +10,11 @@ import java.util.Scanner;
 //          Gonçalo Machado nMec 98359
 //=================================================
 
+//In the same folder as this java file, there are 4 txt files:
+//  -flight1.txt and flight2.txt are example of files that are supposed to be used with the option I inside the program
+//  -commandFile.txt is a file that you pass as an argument when starting the program
+//  -commandFileExpectedOutput.txt is the expected output when you pass commandFile.txt as an argument when starting the program
+
 public class FlightManager {
     public static void main(String[] args){
         String input = "", opt = "";
