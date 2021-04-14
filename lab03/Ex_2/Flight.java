@@ -81,11 +81,11 @@ public class Flight {
 
     //Function to add a reservation
     public void addReservation(String type,int numSeats){
-        String[] seatsUsed;                                                                                         //String[] is used to save the seats that were reservated
-        if(type.equals("T")){                                                                                       //Reservation in turistic seats
-            seatsUsed = addReservationSupport(this.turSeats, numSeats, true);                                       //Call addReservationSupport() to reserve the turistic seats
-        }else{                                                                                                      //Reservation for executive seats
-            seatsUsed = addReservationSupport(this.execSeats, numSeats, false);                                     //Call addReservationSupport() to reserve the executive seats
+        String[] seatsUsed;                                                                                     //String[] is used to save the seats that were reservated
+        if(type.equals("T")){                                                                                   //Reservation in turistic seats
+            seatsUsed = addReservationSupport(this.turSeats, numSeats, true);                                   //Call addReservationSupport() to reserve the turistic seats
+        }else{                                                                                                  //Reservation for executive seats
+            seatsUsed = addReservationSupport(this.execSeats, numSeats, false);                                 //Call addReservationSupport() to reserve the executive seats
         }
         if(seatsUsed[numSeats-1] == null){                                                                      //If the reservation was not made
             System.out.println("Não foi possivel obter lugares para a reserva: " + type + " " + numSeats);
