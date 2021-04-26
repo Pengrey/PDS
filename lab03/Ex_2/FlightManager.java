@@ -5,10 +5,10 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Scanner;
 
-//=================Done by=========================
-//          Rodrigo Lima nMec 98475
-//          Gonçalo Machado nMec 98359
-//=================================================
+/** 
+ * @author Rodrigo Lima
+ * @author Goncalo Machado
+*/
 
 //In the same folder as this java file, there are 4 txt files:
 //  -flight1.txt and flight2.txt are example of files that are supposed to be used with the option I inside the program

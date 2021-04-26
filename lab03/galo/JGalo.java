@@ -1,9 +1,9 @@
 package galo;
 
-//=================Done by=========================
-//          Rodrigo Lima nMec 98475
-//          Gonçalo Machado nMec 98359
-//=================================================
+/** 
+ * @author Rodrigo Lima
+ * @author Goncalo Machado
+*/
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;

@@ -1,10 +1,10 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 
-//=================Done by=========================
-//          Rodrigo Lima nMec 98475
-//          Gonçalo Machado nMec 98359
-//=================================================
+/** 
+ * @author Rodrigo Lima
+ * @author Goncalo Machado
+*/
 
 public class TestFile {
     public static void main  (String args[]){

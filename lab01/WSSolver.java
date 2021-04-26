@@ -9,10 +9,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 
-//=================Done by=========================
-//          Rodrigo Lima nMec 98475
-//          Gonçalo Machado nMec 98359
-//=================================================
+/** 
+ * @author Rodrigo Lima
+ * @author Goncalo Machado
+*/
 
 public class WSSolver {
     public static void main(String[] args){

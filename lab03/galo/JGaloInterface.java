@@ -1,9 +1,9 @@
 package galo;
 
-//=================Done by=========================
-//          Rodrigo Lima nMec 98475
-//          Gonçalo Machado nMec 98359
-//=================================================
+/** 
+ * @author Rodrigo Lima
+ * @author Goncalo Machado
+*/
 
 public interface JGaloInterface {
 	public abstract char getActualPlayer();

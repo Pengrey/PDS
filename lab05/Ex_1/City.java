@@ -1,7 +1,7 @@
-//=================Done by=========================
-//          Rodrigo Lima nMec 98475
-//          Gonçalo Machado nMec 98359
-//=================================================
+/** 
+ * @author Rodrigo Lima
+ * @author Goncalo Machado
+*/
 
 public class City implements Vehicle {
     private final int maxPassangers = 3;

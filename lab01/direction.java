@@ -3,10 +3,10 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-//=================Done by=========================
-//          Rodrigo Lima nMec 98475
-//          Gonçalo Machado nMec 98359
-//=================================================
+/** 
+ * @author Rodrigo Lima
+ * @author Goncalo Machado
+*/
 
 public enum direction {
     Up(-1,0),

@@ -1,9 +1,9 @@
 import java.util.Comparator;
 
-//=================Done by=========================
-//          Rodrigo Lima nMec 98475
-//          Gonçalo Machado nMec 98359
-//=================================================
+/** 
+ * @author Rodrigo Lima
+ * @author Goncalo Machado
+*/
 
 public class wordComparator implements Comparator<word> {
     public int compare(word o1, word o2) {
