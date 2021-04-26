@@ -38,7 +38,7 @@ public class Movie {
         }
 
         public Builder writer(String val){
-            series = val;
+            writer = val;
             return this;
         }
 
