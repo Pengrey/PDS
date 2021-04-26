@@ -1,3 +1,8 @@
+/** 
+ * @author Rodrigo Lima
+ * @author Goncalo Machado
+*/
+
 class Cake {
     private Shape shape;
     private String cakeLayer;
@@ -19,10 +24,11 @@ class Cake {
     public void setMessage(String m){this.message = m;}
     public int getCakeLayers() {return this.numCakeLayers;}
 
+    // ToString with the wanted format
     public String toString(){
         String result;
         result = this.cakeLayer + " cake with " + this.numCakeLayers + " layers";
-        if(this.numCakeLayers > 1)
+        if(this.numCakeLayers > 1)      // Check if there is Cream in the middle of layers
             result += " and " + this.midLayerCream + " cream";
         result += ", topped with " + this.topLayerCream + " cream and " + this.topping + ". Message says: \"" + this.message + "\".";
         return result;
