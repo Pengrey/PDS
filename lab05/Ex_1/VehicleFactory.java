@@ -15,17 +15,19 @@ public class VehicleFactory {
     }
 
     public static Vehicle getVehicle(int passangers, int[] luggage, boolean cadeiraDeRodas){
-        int totalWeight = 0;
+        int totalVolume = 0;
         Vehicle appropriateVehicle = null;
         String outputString;
+        //Calculate total volume
         for (int i : luggage) {
             if (i < 0){
                 System.out.println("Luggage volume can't be negative: " + i);
                 return null;
             }
-            totalWeight += i;
+            totalVolume += i;
         }
 
+        //List with all different types of Vehicle
         ArrayList<Vehicle> possibleVehicles = new ArrayList<Vehicle>();
         possibleVehicles.add(new Scooter());
         possibleVehicles.add(new Micro());
@@ -33,11 +35,14 @@ public class VehicleFactory {
         possibleVehicles.add(new Family());
         possibleVehicles.add(new Van());
 
-        if (cadeiraDeRodas && totalWeight <= 1000){
+        //Special case, since only Van can have wheelchair
+        if (cadeiraDeRodas && totalVolume <= possibleVehicles.get(4).getMaxVolume()){
             appropriateVehicle = possibleVehicles.get(4);
         }else{
+            //for each vehicle
             for (Vehicle vehicle : possibleVehicles) {
-                if(vehicle.getMaxPassangers() >= passangers && vehicle.getMaxVolume() >= totalWeight){
+                //check if its the appropriate one
+                if(vehicle.getMaxPassangers() >= passangers && vehicle.getMaxVolume() >= totalVolume){
                     appropriateVehicle = vehicle;
                     break;
                 }
@@ -45,7 +50,7 @@ public class VehicleFactory {
         }
 
         outputString = "Vehicle for " + passangers + " passangers";
-        if (totalWeight > 0){
+        if (totalVolume > 0){
             outputString += " with " + luggage.length + " items of luggage";
         }
         if (cadeiraDeRodas){

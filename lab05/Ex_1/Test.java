@@ -12,6 +12,10 @@ public class Test {
         v = VehicleFactory.getVehicle(3, luggage);
         // Get vehicle for 2 passengers and wheelchair
         v = VehicleFactory.getVehicle(2, true);
-        // you should add other examples here
+        //Get vehicle for 4 passengers with 3 items of luggage
+        luggage = new int[]{50, 200, 440}; //three bags witha  total volume of 690
+        v = VehicleFactory.getVehicle(4, luggage, false);
+        //Get vehicle for 5 passengers
+        v = VehicleFactory.getVehicle(5);
         }
 }
