@@ -1,3 +1,8 @@
+/** 
+ * @author Rodrigo Lima
+ * @author Goncalo Machado
+*/
+
 interface CakeBuilder {
     public void setCakeShape(Shape shape);
     public void addCakeLayer();

@@ -1,3 +1,8 @@
+/** 
+ * @author Rodrigo Lima
+ * @author Goncalo Machado
+*/
+
 class Cake {
     private Shape shape;
     private String cakeLayer;
@@ -12,9 +17,20 @@ class Cake {
     // Methods to set variables
     public void setCakeShape(Shape shape) {this.shape = shape;}
     public void setCakeLayer(String layer){this.cakeLayer = layer;}
-    public void addCakeLayer(){this.numCakeLayers++;}
+    public void setCakeLayers(int layer){this.numCakeLayers = layer;}
     public void setmidLayerCream(Cream layer){this.midLayerCream = layer;}
     public void settopLayerCream(Cream layer){this.topLayerCream = layer;}
     public void setTopping(Topping topping){this.topping = topping;}
     public void setMessage(String m){this.message = m;}
+    public int getCakeLayers() {return this.numCakeLayers;}
+
+    // ToString with the wanted format
+    public String toString(){
+        String result;
+        result = this.cakeLayer + " cake with " + this.numCakeLayers + " layers";
+        if(this.numCakeLayers > 1)      // Check if there is Cream in the middle of layers
+            result += " and " + this.midLayerCream + " cream";
+        result += ", topped with " + this.topLayerCream + " cream and " + this.topping + ". Message says: \"" + this.message + "\".";
+        return result;
+    }
 }

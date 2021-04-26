@@ -1,3 +1,8 @@
+/** 
+ * @author Rodrigo Lima
+ * @author Goncalo Machado
+*/
+
 class Ex4 {
     public static void main(String[] args) {
         CakeMaster cakeMaster = new CakeMaster();
@@ -22,6 +27,11 @@ class Ex4 {
         cake= cakeMaster.getCake();
         System.out.println("Your cake is ready: "+ cake);
         
-        //you should add here other example(s)of CakeBuilder
+        
+        CakeBuilder darkchoco= new DarkChocolateCakeBuilder();
+        cakeMaster.setCakeBuilder(darkchoco);
+        cakeMaster.createCake(Shape.Circle, 30, "Im a tower of chocolate");                   // circle, 30 cake layers
+        cake= cakeMaster.getCake();
+        System.out.println("Your cake is ready: "+ cake);
     }
 }
