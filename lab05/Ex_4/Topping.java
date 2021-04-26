@@ -1,5 +1,0 @@
-class Topping{
-    public Topping(){
-
-    }
-}
