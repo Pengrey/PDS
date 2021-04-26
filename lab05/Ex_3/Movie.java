@@ -1,6 +1,11 @@
 import java.util.ArrayList;
 import java.util.List;
 
+//=================Done by=========================
+//          Rodrigo Lima nMec 98475
+//          Gonçalo Machado nMec 98359
+//=================================================
+
 public class Movie {
     private final String title;
     private final int year;

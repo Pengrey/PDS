@@ -1,3 +1,8 @@
+//=================Done by=========================
+//          Rodrigo Lima nMec 98475
+//          Gonçalo Machado nMec 98359
+//=================================================
+
 public class Test {
     public static void main(String[] args) {
         int[] luggage;

@@ -1,5 +1,10 @@
 import java.util.ArrayList;
 
+//=================Done by=========================
+//          Rodrigo Lima nMec 98475
+//          Gonçalo Machado nMec 98359
+//=================================================
+
 public class VehicleFactory {
     
     public static Vehicle getVehicle(int passangers){
