@@ -1,4 +1,4 @@
-package lab3;
+
 
 public class JGaloInterfaceMethods implements JGaloInterface{
 	char [][] tabela;
@@ -13,7 +13,7 @@ public class JGaloInterfaceMethods implements JGaloInterface{
 			counter = 0;
 		}
 		else {
-			System.out.println("Player inválido! O Player pode ser 'O' ou 'X'!");
+			System.out.println("Player invï¿½lido! O Player pode ser 'O' ou 'X'!");
 			System.exit(0);
 		}
 	}
@@ -26,7 +26,7 @@ public class JGaloInterfaceMethods implements JGaloInterface{
 
 	@Override
 	public char getActualPlayer() {
-		// Os jogadores alternam turnos logo é necessário um count
+		// Os jogadores alternam turnos logo ï¿½ necessï¿½rio um count
 		if (counter==0) {
 			return this.player;
 		}

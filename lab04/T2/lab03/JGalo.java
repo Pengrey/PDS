@@ -1,4 +1,4 @@
-package lab3;
+
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
