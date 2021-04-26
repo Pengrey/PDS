@@ -37,7 +37,7 @@ public class Movie {
             this.director = movieDirector;
         }
 
-        public Builder writer(String val){
+        public Builder writer(Person val){
             writer = val;
             return this;
         }
@@ -100,5 +100,10 @@ public class Movie {
         isTelevision = builder.isTelevision;
         isNetflix = builder.isNetflix;
         isIndependent = builder.isIndependent;
+    }
+
+    @Override
+    public String toString() {
+        return "Title: " + this.title + ", Year: " + this.year + ", Director: " + this.director + ", Writer: " + this.writer + ", Series: " + this.series + ", Cast: " + this.cast + ", Locations: " + this.locations + ", Languages: " + this.languages + ", Genres: " + this.genres + ", isTelevision: " + this.isTelevision + ", isNetflix: " + this.isNetflix + ", isIndependent: " + this.isIndependent;
     }
 }
