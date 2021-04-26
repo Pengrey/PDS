@@ -57,7 +57,7 @@ public class Game implements JGaloInterface {
         // Checks if player X has won the game in any given way of winning
         if(L1 == 3 || L2 == 3 || L3 == 3 || V1 == 3 || V2 == 3 || V3 == 3 || D1 == 3 || D2 == 3) this.Resultado = 'X'; 
 
-        // Checks if player X has won the game in any given way of winning
+        // Checks if player O has won the game in any given way of winning
         if(L1 == -3 || L2 == -3 || L3 == -3 || V1 == -3 || V2 == -3 || V3 == -3 || D1 == -3 || D2 == -3) this.Resultado = 'O';
 
         // Checks if game can have at least one more play to be made

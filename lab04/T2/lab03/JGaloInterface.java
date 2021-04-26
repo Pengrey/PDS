@@ -1,4 +1,4 @@
-package lab3;
+
 
 public interface JGaloInterface {
 	public abstract char getActualPlayer();

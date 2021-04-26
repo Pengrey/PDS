@@ -17,7 +17,7 @@ public class ReservasVoos {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		System.out.println("Escolha a sua opção: (H para ajuda)\n");
+		System.out.println("Escolha a sua opï¿½ï¿½o: (H para ajuda)\n");
 		Scanner sc = new Scanner(System.in);
 		while (true) {
 		String txt = sc.nextLine();
@@ -34,12 +34,12 @@ public class ReservasVoos {
 	}
 	
 	public static void getOption(String[] splitting) {
-		String opção = splitting[0].toUpperCase(); // comando dado pelo user
+		String opï¿½ï¿½o = splitting[0].toUpperCase(); // comando dado pelo user
 		
 			int NLugaresTuristica=0,NLugaresExecutiva=0, nRows=0, nSeatsPerRow=0;
 			int seatsTakenE = 0, seatsTakenT = 0;
 			String[] header = null;
-			switch (opção) {
+			switch (opï¿½ï¿½o) {
 				case "I":
 					
 					File ficheiro = new File(splitting[1]);
@@ -49,13 +49,13 @@ public class ReservasVoos {
 						
 						while (sc.hasNextLine()) {
 					    	//System.out.println(sc.nextLine());
-					    	stuff.add(sc.nextLine()); // vai ter as informações do ficheiro de voo
+					    	stuff.add(sc.nextLine()); // vai ter as informaï¿½ï¿½es do ficheiro de voo
 						}
 						
-						header = stuff.get(0).replace("x", " ").split(" ");//1ª linha do txt separada
+						header = stuff.get(0).replace("x", " ").split(" ");//1ï¿½ linha do txt separada
 						String codVoo= header[0].replace(">", "");
 						flightCodes.add(codVoo);
-						System.out.println("Código de voo " + header[0].replace(">", "") ); 
+						System.out.println("Cï¿½digo de voo " + header[0].replace(">", "") ); 
 						stuff.remove(0);
 						reservas.put(codVoo, stuff);
 						
@@ -73,18 +73,18 @@ public class ReservasVoos {
 							if(nSeatsPerRow < Integer.parseInt(header[4])) {
 								nSeatsPerRow = Integer.parseInt(header[4]);
 							}
-							System.out.println("Lugares disponíveis: "+ NLugaresExecutiva 
-									+" lugares em classe Executiva; "+ NLugaresTuristica +" lugares em classe Turística."); 
+							System.out.println("Lugares disponï¿½veis: "+ NLugaresExecutiva 
+									+" lugares em classe Executiva; "+ NLugaresTuristica +" lugares em classe Turï¿½stica."); 
 						}
 						else {
 							NLugaresTuristica = (int) Integer.parseInt(header[1]) * Integer.parseInt(header[2]);
 							//nRows= (int) Integer.parseInt(header[1]); 
 							nTotalFilas.add(Integer.parseInt(header[1]));
 							nLugaresEmFila.add(Integer.parseInt(header[2]));
-							System.out.println("Lugares disponíveis: "+ NLugaresTuristica +" lugares em classe Turística."
+							System.out.println("Lugares disponï¿½veis: "+ NLugaresTuristica +" lugares em classe Turï¿½stica."
 									+ "Classe executiva nao disponivel neste voo"); 
 						}
-						for(int i=1; i<stuff.size(); i++) {//obter nº de lugares reservados em cada classe
+						for(int i=1; i<stuff.size(); i++) {//obter nï¿½ de lugares reservados em cada classe
 							String[] reservations = stuff.get(i).split(" ");
 							//System.out.println(reservations[0].getClass());
 							//System.out.println("E".getClass());
@@ -94,7 +94,7 @@ public class ReservasVoos {
 								seatsTakenE += seatsTaken;
 								//System.out.println(seatsTakenE);
 								if(seatsTakenE > NLugaresExecutiva) {
-									System.out.println("Não foi possível obter lugares para a reserva: " + stuff.get(i));
+									System.out.println("Nï¿½o foi possï¿½vel obter lugares para a reserva: " + stuff.get(i));
 									break;
 								}
 							}
@@ -103,7 +103,7 @@ public class ReservasVoos {
 								seatsTakenT += seatsTaken;
 								//System.out.println(seatsTakenE);
 								if(seatsTakenT > NLugaresTuristica) {
-									System.out.println("Não foi possível obter lugares para a reserva: " + stuff.get(i));
+									System.out.println("Nï¿½o foi possï¿½vel obter lugares para a reserva: " + stuff.get(i));
 									break;
 								}
 							}
