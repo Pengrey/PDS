@@ -1,0 +1,3 @@
+The implementation of the class java.util.Calendar uses the following patterns:
+-> Singleton: Used on the method getInstance()
+-> Abstract Factory: Used on the creation of the various types of calendars
