@@ -1,0 +1,3 @@
+class Alinea1{
+    
+}
