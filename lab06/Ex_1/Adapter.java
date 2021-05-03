@@ -10,13 +10,8 @@ class Adapter {
     }
 
     // Saves employee on the databases
-    public void save(Object person){
-        if (person instanceof Employee){
-            database.addEmployee((Employee) person);
-        }
-        if (person instanceof Empregado){
-            registos.insere((Empregado) person);
-        }
+    public void save(Employee person){
+        database.addEmployee(person);
     }
 
     // Removes employee from databases

@@ -31,8 +31,8 @@ class Alinea2{
         System.out.println("Adding persons");
         adapter.save(Jose);
         adapter.save(Ana);
-        adapter.save(Joao);
-        adapter.save(Maria);
+        registos.insere(Joao);
+        registos.insere(Maria);
         System.out.println("DONE\n");
 
         // Check if employes belong to company
