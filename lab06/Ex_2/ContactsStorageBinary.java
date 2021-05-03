@@ -17,8 +17,8 @@ public class ContactsStorageBinary implements ContactsStorageInterface{
         this.binaryFile = binaryFile;
     }
 
+    //Reads binary file and returns a list with the contacts read
     public List<Contact> loadContacts() {
-        //Suponho que esta funçao seja para ler o file e devolver a lista de Contactos
         List<Contact> list = new ArrayList<Contact>();
         String strRead = "";
         try (InputStream iStream = new FileInputStream(this.binaryFile);){
@@ -51,8 +51,8 @@ public class ContactsStorageBinary implements ContactsStorageInterface{
         }
     }
 
+    //Reads the list and saves the contacts onto a binary file
     public boolean saveContacts(List<Contact> list) {
-        //Tenho que perguntar se isto grava por cima ou adiciona ao file existente
         try{
             OutputStream oStream = new FileOutputStream(this.binaryFile, false);
             String tempString = "";

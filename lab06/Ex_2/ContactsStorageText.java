@@ -15,8 +15,8 @@ public class ContactsStorageText implements ContactsStorageInterface {
         this.txtFile = txtFile;
     }
 
+    //Reads binary file and returns a list with the contacts read
     public List<Contact> loadContacts() {
-        //Suponho que esta funçao seja para ler o file e devolver a lista de Contactos
         String strRead = "";
         String name = "";
         int phone;
@@ -48,7 +48,7 @@ public class ContactsStorageText implements ContactsStorageInterface {
         return list;
     }
 
-    @Override
+    //Reads the list and saves the contacts onto a binary file
     public boolean saveContacts(List<Contact> list) {
         try {
             FileWriter fileWriter = new FileWriter(this.txtFile, false);

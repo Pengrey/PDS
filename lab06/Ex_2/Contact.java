@@ -27,5 +27,12 @@ public class Contact {
     public String toString() {
         return "Contact of " + this.name + " with number " + this.phone + ".";
     }
-    
+
+    public boolean equalsContact(Contact contact) {
+        return getPhone() == contact.getPhone() && java.util.Objects.equals(getName(), contact.getName());
+    }
+
+    public int hashCode() {
+        return java.util.Objects.hash(super.hashCode(), getName(), getPhone());
+    }
 }

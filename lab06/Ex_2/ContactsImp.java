@@ -14,29 +14,34 @@ public class ContactsImp implements ContactsInterface {
         this.contacts = new ArrayList<Contact>();
     }
 
+    //Load all the contacts on the ContactsStorageInterface and add them to contacts
     public void openAndLoad(ContactsStorageInterface store) {
         this.contacts.addAll(store.loadContacts());
     }
 
+    //Save all contacts to the ContactsStorageInterface and clear all the contacts
     public void saveAndClose() {
         this.cSI.saveContacts(contacts);
         this.contacts.clear();
     }
 
+    //Save all contacts to the ContactsStorageInterface and clear all the contacts
     public void saveAndClose(ContactsStorageInterface store) {
         store.saveContacts(contacts);
         this.contacts.clear();
     }
 
+    //Checks if a contact exists in contacts
     public boolean exist(Contact contact) {
         for (Contact con : contacts) {
-            if(contact == con){
+            if(contact.equalsContact(con)){
                 return true;
             }
         }
         return false;
     }
 
+    //Search contacts for the contact with a specific name
     public Contact getByName(String name) {
         for (Contact contact : contacts) {
             if (contact.getName().equals(name)){
@@ -48,7 +53,9 @@ public class ContactsImp implements ContactsInterface {
         return null;
     }
 
+    //Add contact to contacts if it is not already there
     public boolean add(Contact contact) {
+        System.out.println("Contact: " + contact + " exists: " + exist(contact));
         if (!exist(contact) && contact != null){
             contacts.add(contact);
             System.out.println("Contact " + contact.toString() + " added");
@@ -58,6 +65,7 @@ public class ContactsImp implements ContactsInterface {
         return false;
     }
 
+    //Remove contact if it exists in contacts
     public boolean remove(Contact contact) {
         if(!exist(contact)){
             System.out.println("Contact could not be removed");
