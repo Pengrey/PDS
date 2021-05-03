@@ -1,18 +1,31 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class ContactsImp implements ContactsInterface {
     List<Contact> contacts;
+    ContactsStorageInterface cSI;
+
+    public ContactsImp(){
+        this.contacts = new ArrayList<Contact>();
+    }
+
+    public ContactsImp(ContactsStorageInterface store){
+        this.cSI = store;
+        this.contacts = new ArrayList<Contact>();
+    }
 
     public void openAndLoad(ContactsStorageInterface store) {
         this.contacts.addAll(store.loadContacts());
     }
 
     public void saveAndClose() {
-        //maybe tenho que fazer saveContacts, depois ir buscar o file
+        this.cSI.saveContacts(contacts);
+        this.contacts.clear();
     }
 
     public void saveAndClose(ContactsStorageInterface store) {
-
+        store.saveContacts(contacts);
+        this.contacts.clear();
     }
 
     public boolean exist(Contact contact) {
@@ -27,6 +40,7 @@ public class ContactsImp implements ContactsInterface {
     public Contact getByName(String name) {
         for (Contact contact : contacts) {
             if (contact.getName().equals(name)){
+                System.out.println("Found " + contact.toString());
                 return contact;
             }
         }
@@ -35,9 +49,9 @@ public class ContactsImp implements ContactsInterface {
     }
 
     public boolean add(Contact contact) {
-        if (exist(contact) && contact != null){
+        if (!exist(contact) && contact != null){
             contacts.add(contact);
-            System.out.println("Contact added");
+            System.out.println("Contact " + contact.toString() + " added");
             return true;
         }
         System.out.println("Contact could not be added");
@@ -45,12 +59,12 @@ public class ContactsImp implements ContactsInterface {
     }
 
     public boolean remove(Contact contact) {
-        if(exist(contact)){
+        if(!exist(contact)){
             System.out.println("Contact could not be removed");
             return false;
         }
         contacts.remove(contact);
-        System.out.println("Contact removed");
+        System.out.println("Contact " + contact.toString() + " removed");
         return true;
     }
     

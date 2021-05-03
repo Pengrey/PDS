@@ -27,4 +27,5 @@ public class Contact {
     public String toString() {
         return "Contact of " + this.name + " with number " + this.phone + ".";
     }
+    
 }

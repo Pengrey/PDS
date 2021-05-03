@@ -40,25 +40,24 @@ public class ContactsStorageText implements ContactsStorageInterface {
             for(int i = 0; i < tempString.length-1; i++){
                 name += tempString[i] + " ";
             }
+            name = name.strip();
             contact = new Contact(name, phone);
             list.add(contact);
+            name = "";
         }
         return list;
     }
 
     @Override
     public boolean saveContacts(List<Contact> list) {
-        //Suponho que esta funçao seja para escrever num file e dar set do txtFile como esse file
         try {
-            File temp = new File(this.txtFile.getName());
-            FileWriter fileWriter = new FileWriter(temp);
+            FileWriter fileWriter = new FileWriter(this.txtFile, false);
             PrintWriter printWriter = new PrintWriter(fileWriter);
             for (Contact contact : list) {
                 printWriter.print(contact.getName() + " " + contact.getPhone() + "\t");
             }
             printWriter.close();
             fileWriter.close();
-            this.txtFile = temp;
             return true;
         } catch (IOException e) {
            return false;

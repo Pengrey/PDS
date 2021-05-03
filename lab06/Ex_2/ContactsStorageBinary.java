@@ -34,8 +34,11 @@ public class ContactsStorageBinary implements ContactsStorageInterface{
             for(int i = 0; i < tempString.length-1; i++){
                 name += tempString[i] + " ";
             }
+            name = name.strip();
             Contact contact = new Contact(name, phone);
+            System.out.println(contact);
             list.add(contact);
+            iStream.close();
         }
         return list;
 
@@ -51,8 +54,7 @@ public class ContactsStorageBinary implements ContactsStorageInterface{
     public boolean saveContacts(List<Contact> list) {
         //Tenho que perguntar se isto grava por cima ou adiciona ao file existente
         try{
-            File temp = new File(this.binaryFile.getName());
-            OutputStream oStream = new FileOutputStream(temp);
+            OutputStream oStream = new FileOutputStream(this.binaryFile, false);
             String tempString = "";
             for (Contact contact : list) {
                 tempString += contact.getName() + " " + contact.getPhone() + "\t";
@@ -60,7 +62,6 @@ public class ContactsStorageBinary implements ContactsStorageInterface{
             byte[] allBytes = tempString.getBytes(StandardCharsets.UTF_8);
             oStream.write(allBytes);
             oStream.close();
-            this.binaryFile = temp;
         }catch(FileNotFoundException e){
             System.out.println("File Not Found");
             return false;
