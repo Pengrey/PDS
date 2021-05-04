@@ -3,7 +3,6 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -73,6 +72,7 @@ public class ContactsStorageBinary implements ContactsStorageInterface{
         return false;
     }
 
+    //Converts byte array to binary string
     public static String convertByteArraysToBinary(byte[] input) {
 
         StringBuilder result = new StringBuilder();
@@ -87,6 +87,7 @@ public class ContactsStorageBinary implements ContactsStorageInterface{
 
     }
 
+    //formats binary string
     public static String prettyBinary(String binary, int blockSize, String separator) {
 
         List<String> result = new ArrayList<>();
@@ -99,6 +100,7 @@ public class ContactsStorageBinary implements ContactsStorageInterface{
         return result.stream().collect(Collectors.joining(separator));
     }
 
+    //Converts binary string to actual text string
     public static String binaryToString(String bin) {
 
         String raw = Arrays.stream(bin.split(" "))
