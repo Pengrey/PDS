@@ -1,1 +1,53 @@
-<diagram program="umletino" version="14.4.0-SNAPSHOT"><zoom_level>10</zoom_level></diagram>
+<diagram program="umletino" version="14.4.0-SNAPSHOT"><zoom_level>10</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>32</x><y>250</y><w>210</w><h>180</h></coordinates><panel_attributes>ContactsImp
+--
+-contacts:List&lt;Contact&gt;
+-cSI:ContactsStorageInterface
+--
+-add(contact:Contact):void
+-remove(contact:Contact):void
+-getByName(name:String):Contact
+-exist(contact:Contact):boolean
+-openAndLoad(store:ContactsStorageInterface):void
+-saveAndClose():void
+-saveAndClose(store:ContactsStorageInterface):void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>312</x><y>450</y><w>210</w><h>140</h></coordinates><panel_attributes>ContactsStorageBinary
+--
+-binaryFile:File
+--
+-loadContacts():List&lt;Contact&gt;
+-saveContacts(list:List&lt;Contact&gt;):boolean
+-convertByteArraysToBinary(input:byte[]):String
+-prettyBinary(binary:String, blockSize:int, separator:String):String
+-binaryToString(bin:String):String</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>432</x><y>270</y><w>210</w><h>90</h></coordinates><panel_attributes>&lt;&lt;Interface&gt;&gt;
+ContactsStorageInterface
+--
+-loadContacts():List&lt;Contact&gt;
+-saveContacts(list:List&lt;Contact&gt;):boolean</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>572</x><y>450</y><w>210</w><h>100</h></coordinates><panel_attributes>ContactsStorageText
+--
+-txtFile:File
+--
+-loadContacts():List&lt;Contact&gt;
+-saveContacts(list:List&lt;Contact&gt;):boolean</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>32</x><y>490</y><w>210</w><h>180</h></coordinates><panel_attributes>Contact
+--
+-name:String
+-phone:int
+--
+-equalsContact(contact:Contact):boolean
+-getName():String
+-getPhone():int
+-setName(name:String):void
+-setPhone(phone:int):void
+-toString():String
+-hashCode():int</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>32</x><y>20</y><w>210</w><h>160</h></coordinates><panel_attributes>&lt;&lt;Interface&gt;&gt;
+ContactsInterface
+--
+-add(contact:Contact):void
+-remove(contact:Contact):void
+-getByName(name:String):Contact
+-exist(contact:Contact):boolean
+-openAndLoad(store:ContactsStorageInterface):void
+-saveAndClose():void
+-saveAndClose(store:ContactsStorageInterface):void
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>412</x><y>70</y><w>210</w><h>60</h></coordinates><panel_attributes>testProgram
+--
+-main(args:String[]):void</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>122</x><y>170</y><w>30</w><h>100</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;10;10;80</additional_attributes></element><element><id>Relation</id><coordinates><x>410</x><y>350</y><w>140</w><h>120</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>120;10;10;100</additional_attributes></element><element><id>Relation</id><coordinates><x>560</x><y>350</y><w>140</w><h>120</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;10;120;100</additional_attributes></element><element><id>Relation</id><coordinates><x>230</x><y>300</y><w>220</w><h>40</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-&gt;
+                                              1</panel_attributes><additional_attributes>10;20;200;20</additional_attributes></element><element><id>Relation</id><coordinates><x>120</x><y>420</y><w>30</w><h>90</h></coordinates><panel_attributes></panel_attributes><additional_attributes>10;10;10;70</additional_attributes></element></diagram>
