@@ -1,13 +1,15 @@
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.PrintWriter;
+import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class ContactsStorageBinary implements ContactsStorageInterface{
 
@@ -21,12 +23,17 @@ public class ContactsStorageBinary implements ContactsStorageInterface{
     public List<Contact> loadContacts() {
         List<Contact> list = new ArrayList<Contact>();
         String strRead = "";
-        try (InputStream iStream = new FileInputStream(this.binaryFile);){
-            long fileSize = this.binaryFile.length();
-            byte[] allBytes = new byte[(int) fileSize];
-            iStream.read(allBytes);
-            strRead = new String(allBytes, StandardCharsets.UTF_8);
-            String[] contactsRead = strRead.split("\t");
+        try {
+            Scanner sc = new Scanner(this.binaryFile);
+            while(sc.hasNextLine()){
+                strRead += sc.nextLine();
+            }
+            sc.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found");
+        }
+        strRead = binaryToString(strRead);
+        String[] contactsRead = strRead.split("\t");
         for (String string : contactsRead) {
             String[] tempString = string.split(" ");
             int phone = Integer.parseInt(tempString[tempString.length-1]);
@@ -38,30 +45,25 @@ public class ContactsStorageBinary implements ContactsStorageInterface{
             Contact contact = new Contact(name, phone);
             System.out.println(contact);
             list.add(contact);
-            iStream.close();
         }
         return list;
-
-        } catch (FileNotFoundException e) {
-            System.out.println("File not Found");
-            return null;
-        } catch (IOException e) {
-            System.out.println("IO Exception");
-            return null;
-        }
     }
 
     //Reads the list and saves the contacts onto a binary file
     public boolean saveContacts(List<Contact> list) {
         try{
-            OutputStream oStream = new FileOutputStream(this.binaryFile, false);
+            FileWriter fWriter = new FileWriter(this.binaryFile, false);
+            PrintWriter pWriter = new PrintWriter(fWriter);
             String tempString = "";
             for (Contact contact : list) {
                 tempString += contact.getName() + " " + contact.getPhone() + "\t";
             }
             byte[] allBytes = tempString.getBytes(StandardCharsets.UTF_8);
-            oStream.write(allBytes);
-            oStream.close();
+            String binary = convertByteArraysToBinary(allBytes);
+            binary = prettyBinary(binary, 8, " ");
+            pWriter.print(binary);
+            pWriter.close();
+            fWriter.close();
         }catch(FileNotFoundException e){
             System.out.println("File Not Found");
             return false;
@@ -69,6 +71,43 @@ public class ContactsStorageBinary implements ContactsStorageInterface{
             System.out.println("IO Exception");
         }
         return false;
+    }
+
+    public static String convertByteArraysToBinary(byte[] input) {
+
+        StringBuilder result = new StringBuilder();
+        for (byte b : input) {
+            int val = b;
+            for (int i = 0; i < 8; i++) {
+                result.append((val & 128) == 0 ? 0 : 1);
+                val <<= 1;
+            }
+        }
+        return result.toString();
+
+    }
+
+    public static String prettyBinary(String binary, int blockSize, String separator) {
+
+        List<String> result = new ArrayList<>();
+        int index = 0;
+        while (index < binary.length()) {
+            result.add(binary.substring(index, Math.min(index + blockSize, binary.length())));
+            index += blockSize;
+        }
+
+        return result.stream().collect(Collectors.joining(separator));
+    }
+
+    public static String binaryToString(String bin) {
+
+        String raw = Arrays.stream(bin.split(" "))
+                .map(binary -> Integer.parseInt(binary, 2))
+                .map(Character::toString)
+                .collect(Collectors.joining()); // cut the space
+
+
+        return raw;
     }
     
 }
