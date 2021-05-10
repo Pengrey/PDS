@@ -14,7 +14,7 @@ class Employee implements EmployeeInterface{
     }
 
     @Override public void work(){
-        System.out.print(name + " working as ");
+        System.out.print(name + " working as Employee ");
     }
 
 }
