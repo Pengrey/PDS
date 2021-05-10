@@ -1,6 +1,6 @@
 import java.util.Date;
 
-interface WorkerInterface{
+interface EmployeeInterface{
     void start(Date d);
     void terminate(Date d);
     void work();
