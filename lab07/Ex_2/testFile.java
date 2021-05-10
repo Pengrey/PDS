@@ -1,4 +1,4 @@
-public class textFile {
+public class testFile {
     public static void main(String[] args) {
         ReaderInterface main = new TextReader("testTxt.txt");
         TermFilter tFilter = new TermFilter(main);
