@@ -8,8 +8,9 @@ public class Produto extends ComponentsInterface{
         this.weight = weight;
     }
 
-    public void draw() {
+    public double draw() {
         System.out.println(indent.toString() + this.toString());
+        return this.getWeight();
     }
 
     public String getName() {

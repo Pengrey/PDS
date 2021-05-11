@@ -20,24 +20,18 @@ public class Caixa extends ComponentsInterface {
         return name;
     }
 
-    public double getBoxWeight(){
+    public double getWeight() {
         return this.weight;
     }
 
-    public double getWeight() {
-        double totalWeight = getBoxWeight();
-        for (ComponentsInterface component : components) {
-            totalWeight += component.getWeight();
-        }
-        return totalWeight;
-    }
-
-    public void draw(){
-        System.out.println(indent.toString() +  "* Caixa '" + this.getName() + "' [ Weight: " + this.getBoxWeight() + " ; Total: " + this.getWeight() + "]");
+    public double draw(){
+        double totalWeight = this.getWeight();
         indent.append("   ");
         for (ComponentsInterface component : components) {
-            component.draw();
+            totalWeight += component.draw();
         }
         indent.setLength(indent.length() - 3);
+        System.out.println(indent.toString() + "* Caixa '" + this.getName() + "' [ Weight: " + this.getWeight() + " ; Total: " + totalWeight + "]");
+        return totalWeight;
     }
 }
