@@ -3,23 +3,18 @@ import java.awt.*;
 
 public abstract class StarType {
 
-    private int size;
-    private Color color;
-    protected String description;
-    protected Float[] physicalProperties;
     private int x;
     private int y;
+    private BaseStar base;
 
-    public StarType(int size, Color color, int x, int y) {
-        this.size = size;
-        this.color = color;
+    public StarType( int x, int y, BaseStar base) {
         this.x = x;
         this.y = y;
+        this.base = base;
     }
 
     public void draw(Graphics g) {
-        g.setColor(color);
-        g.fillOval(x, y , size, size);
+        base.draw(g, x, y);
     }
     
 }
