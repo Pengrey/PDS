@@ -12,6 +12,15 @@ class Parking{
         }
     }
 
+    public static boolean dontAllow(Person p){
+        if(allowed_records.contains(p)){
+            allowed_records.remove(p);
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     public ArrayList<Person> getRecords(){
         return allowed_records;
     }

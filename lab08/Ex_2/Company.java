@@ -44,6 +44,19 @@ class Company {
             System.out.println(person.getName() + " not eligeble for parking.");
         }
 
+         // Now with a new avg cap, refresh previous permitions
+        for (Employee emp : emps){
+            // Add permitions if now eligeble
+            if(emp.getSalary() > avg && Parking.allow(emp.getPerson())){
+                System.out.println(emp.getPerson().getName() + " is now in the allowed parking list.");
+            };
+
+            // Remove permitions if now not eligeble
+            if(emp.getSalary() < avg && Parking.dontAllow(emp.getPerson())){
+                System.out.println(emp.getPerson().getName() + " is now not in the allowed parking list.");
+            };
+        }
+
         // Creates card for employee
         e.setCard(new Card(person.getName()));
         System.out.println("Atributed card:\n" + e.getCard().toString() + "\n");
