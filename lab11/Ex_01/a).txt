@@ -1,0 +1,1 @@
+Para podermos selecionar facilmente o melhor algoritmo de organização entre os existentes tendo como base o tempo de execução de cada um, devemos utilizar o padrão de Strategy.
