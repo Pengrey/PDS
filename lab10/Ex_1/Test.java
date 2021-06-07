@@ -19,8 +19,8 @@ public class Test {
 
         // Clientes
         Cliente rodrigo = new Cliente("Rodrigo");
-        Cliente andre = new Cliente("andre");
-        Cliente ana = new Cliente("ana");
+        Cliente andre = new Cliente("Andre");
+        Cliente ana = new Cliente("Ana");
 
         // Adicionar leiloes
         Lei_Lao.addLeilao(espada, 10);
